@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Arial,sans-serif;background:#f3f5f9;color:#20283a}
+.hidden{display:none!important}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+.login-screen{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#111827,#243b66)}
+.login-card{background:white;padding:35px;border-radius:18px;width:100%;max-width:390px;display:flex;flex-direction:column;gap:12px;box-shadow:0 15px 45px #0003}
+.logo{font-size:45px;text-align:center}
+.login-card h1{text-align:center;color:#162b50}
+.login-card>p{text-align:center;color:#718096;font-size:13px;margin-bottom:10px}
+.login-card label,.modal-card label,.settings-panel label{font-size:13px;font-weight:600}
+input,select{width:100%;padding:12px;border:1px solid #dce2eb;border-radius:8px;background:white;outline:none;margin:5px 0 12px}
+input:focus,select:focus{border-color:#3478ed}
+.primary-btn{background:#2468dc;color:white;padding:11px 17px;border-radius:8px;font-weight:700}
+.primary-btn:hover{background:#1755bd}
+.secondary-btn{background:#e9edf5;color:#34415a;padding:10px 15px;border-radius:8px}
+.danger-btn{background:#ffe8e8;color:#c53030;padding:10px 15px;border-radius:8px;margin-top:15px}
+.error{color:#d33}
+.app{min-height:100vh;display:flex}
+.sidebar{width:235px;background:#172642;color:white;padding:25px 16px;display:flex;flex-direction:column;gap:10px;flex-shrink:0}
+.brand{font-size:23px;font-weight:800;padding:8px 10px 30px}
+.side-label{font-size:10px;color:#93a4c2;padding:8px 12px}
+.nav,.logout{padding:13px;text-align:left;border-radius:8px;background:transparent;color:#c6d0e2;font-weight:600}
+.nav:hover,.nav.active{background:#2b4775;color:white}
+.logout{margin-top:auto;color:#ffb6b6}
+.main{flex:1;min-width:0;padding:25px}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px;gap:12px}
+.topbar h2{font-size:24px}
+.topbar p,.section-heading p{font-size:13px;color:#7c879b;margin-top:5px}
+.admin{background:white;padding:12px;border-radius:9px;font-size:13px}
+.page{display:block}
+.welcome{background:linear-gradient(110deg,#1c3764,#3479dc);color:white;padding:28px;border-radius:15px;display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.welcome h2{font-size:23px;margin-bottom:8px}
+.welcome p{font-size:13px;color:#dce8ff}
+.welcome span{font-size:55px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:22px}
+.stat-card,.panel{background:white;padding:20px;border-radius:12px;box-shadow:0 3px 15px #1b2a4410}
+.stat-card span{display:block;color:#7b879b;font-size:13px}
+.stat-card strong{display:block;font-size:30px;margin-top:10px;color:#1b3766}
+.panel h3{margin-bottom:18px}
+.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px}
+.section-heading h2{font-size:22px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:550px}
+th,td{text-align:left;padding:14px 12px;border-bottom:1px solid #edf0f5;font-size:13px}
+th{color:#718096;background:#f8f9fc;font-weight:700}
+td{color:#39445a}
+.action-btn{padding:7px 10px;border-radius:6px;margin:2px;font-size:12px;background:#eaf1ff;color:#245db7}
+.action-btn.delete{background:#ffeded;color:#bd3434}
+.status{padding:5px 8px;border-radius:20px;font-size:11px;font-weight:700}
+.status.Completed{background:#d9f8e7;color:#18834a}
+.status.Scheduled{background:#e7efff;color:#285eb4}
+.hint{font-size:12px;color:#7b879b;margin-top:15px}
+.settings-panel{max-width:600px}
+.settings-panel hr{border:0;border-top:1px solid #eee;margin:22px 0}
+.file-label{display:block;margin-top:15px}
+.modal{position:fixed;inset:0;background:#10182799;display:grid;place-items:center;padding:15px;z-index:10}
+.modal-card{background:white;padding:25px;border-radius:14px;width:100%;max-width:420px;max-height:90vh;overflow:auto}
+.modal-card h3{margin-bottom:20px}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:10px}
+@media(max-width:850px){.sidebar{width:190px}.main{padding:18px}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){
+.app{display:block}.sidebar{width:100%;padding:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.brand{grid-column:1/-1;padding:8px}.side-label{display:none}
+.nav,.logout{font-size:11px;text-align:center;padding:10px 4px}.logout{margin:0}
+.main{padding:14px}.topbar h2{font-size:20px}.admin{font-size:11px}
+.welcome{padding:20px}.welcome h2{font-size:18px}.welcome span{font-size:38px}
+.section-heading{align-items:flex-start;flex-direction:column}.stats{gap:9px}
+.stat-card{padding:14px}.stat-card strong{font-size:24px}
+}
