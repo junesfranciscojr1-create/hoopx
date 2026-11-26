@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HoopDesk Basketball Tournament Management System">
+  <title>HoopDesk | Basketball Tournament</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="loginScreen" class="login-screen">
+  <form id="loginForm" class="login-card">
+    <div class="logo">🏀</div>
+    <h1>HoopDesk</h1>
+    <p>Basketball Tournament Management</p>
+    <label for="username">Username</label>
+    <input id="username" type="text" placeholder="Enter username" required autocomplete="username">
+    <label for="password">Password</label>
+    <input id="password" type="password" placeholder="Enter password" required autocomplete="current-password">
+    <button class="primary-btn" type="submit">Login</button>
+    <small>Demo: admin / admin123</small>
+    <p id="loginError" class="error" role="alert"></p>
+  </form>
+</div>
+
+<div id="app" class="app hidden">
+  <aside class="sidebar">
+    <div class="brand">🏀 HoopDesk</div>
+    <p class="side-label">MAIN MENU</p>
+    <button class="nav active" data-page="dashboard">▦ Dashboard</button>
+    <button class="nav" data-page="teams">👥 Teams</button>
+    <button class="nav" data-page="matches">🏆 Matches</button>
+    <button class="nav" data-page="standings">📊 Standings</button>
+    <button class="nav" data-page="settings">⚙ Settings</button>
+    <button id="logoutBtn" class="logout">↪ Logout</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2 id="pageTitle">Dashboard</h2>
+        <p>Basketball Tournament Management System</p>
+      </div>
+      <div class="admin">👤 Administrator</div>
+    </header>
+
+    <section id="dashboard" class="page">
+      <div class="welcome">
+        <div>
+          <h2>Welcome to HoopDesk!</h2>
+          <p>Manage your tournament, teams, and game results.</p>
+        </div>
+        <span>🏀</span>
+      </div>
+      <div class="stats">
+        <div class="stat-card"><span>Total Teams</span><strong id="totalTeams">0</strong></div>
+        <div class="stat-card"><span>Total Matches</span><strong id="totalMatches">0</strong></div>
+        <div class="stat-card"><span>Completed Games</span><strong id="completedMatches">0</strong></div>
+        <div class="stat-card"><span>Upcoming Games</span><strong id="upcomingMatches">0</strong></div>
+      </div>
+      <div class="panel">
+        <h3>Recent Matches</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Match</th><th>Date</th><th>Score</th><th>Status</th></tr></thead>
+            <tbody id="recentMatches"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="teams" class="page hidden">
+      <div class="section-heading">
+        <div><h2>Team Management</h2><p>Add and manage tournament teams.</p></div>
+        <button class="primary-btn" id="addTeamBtn">+ Add Team</button>
+      </div>
+      <div class="panel">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Team Name</th><th>Coach / Manager</th><th>Actions</th></tr></thead>
+            <tbody id="teamsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="matches" class="page hidden">
+      <div class="section-heading">
+        <div><h2>Match Management</h2><p>Schedule games and update scores.</p></div>
+        <button class="primary-btn" id="addMatchBtn">+ Schedule Match</button>
+      </div>
+      <div class="panel">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Match</th><th>Date</th><th>Venue</th><th>Score</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="matchesTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="standings" class="page hidden">
+      <div class="section-heading">
+        <div><h2>Team Standings</h2><p>Automatically calculated tournament rankings.</p></div>
+      </div>
+      <div class="panel">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Rank</th><th>Team</th><th>Played</th><th>Won</th><th>Lost</th><th>Draw</th><th>Points</th></tr></thead>
+            <tbody id="standingsTable"></tbody>
+          </table>
+        </div>
+        <p class="hint">Scoring: Win = 2 points, Draw = 1 point, Loss = 0 points.</p>
+      </div>
+    </section>
+
+    <section id="settings" class="page hidden">
+      <h2>Tournament Settings</h2>
+      <div class="panel settings-panel">
+        <label for="tournamentName">Tournament Name</label>
+        <input id="tournamentName" type="text" placeholder="Tournament name">
+        <label for="tournamentVenue">Venue</label>
+        <input id="tournamentVenue" type="text" placeholder="Tournament venue">
+        <button class="primary-btn" id="saveSettings">Save Settings</button>
+        <hr>
+        <h3>Backup and Restore</h3>
+        <button class="secondary-btn" id="exportData">Download Backup (JSON)</button>
+        <label class="file-label" for="importData">Restore Backup</label>
+        <input type="file" id="importData" accept=".json,application/json">
+        <button class="danger-btn" id="resetData">Reset All Data</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="teamModal" class="modal hidden">
+  <form id="teamForm" class="modal-card">
+    <h3 id="teamModalTitle">Add Team</h3>
+    <label for="teamName">Team Name</label>
+    <input id="teamName" required placeholder="Enter team name">
+    <label for="teamCoach">Coach / Manager</label>
+    <input id="teamCoach" placeholder="Enter coach name">
+    <div class="modal-actions">
+      <button type="button" class="secondary-btn" id="cancelTeam">Cancel</button>
+      <button class="primary-btn" type="submit">Save Team</button>
+    </div>
+  </form>
+</div>
+
+<div id="matchModal" class="modal hidden">
+  <form id="matchForm" class="modal-card">
+    <h3 id="matchModalTitle">Schedule Match</h3>
+    <label for="team1">Team 1</label>
+    <select id="team1" required></select>
+    <label for="team2">Team 2</label>
+    <select id="team2" required></select>
+    <label for="matchDate">Match Date</label>
+    <input id="matchDate" type="date" required>
+    <label for="matchVenue">Venue</label>
+    <input id="matchVenue" placeholder="Enter venue">
+    <div class="modal-actions">
+      <button type="button" class="secondary-btn" id="cancelMatch">Cancel</button>
+      <button class="primary-btn" type="submit">Save Match</button>
+    </div>
+  </form>
+</div>
+
+<div id="scoreModal" class="modal hidden">
+  <form id="scoreForm" class="modal-card">
+    <h3>Update Match Score</h3>
+    <p id="scoreMatchTitle"></p>
+    <label for="score1">Team 1 Score</label>
+    <input id="score1" type="number" min="0" step="1" required>
+    <label for="score2">Team 2 Score</label>
+    <input id="score2" type="number" min="0" step="1" required>
+    <div class="modal-actions">
+      <button type="button" class="secondary-btn" id="cancelScore">Cancel</button>
+      <button class="primary-btn" type="submit">Save Score</button>
+    </div>
+  </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
